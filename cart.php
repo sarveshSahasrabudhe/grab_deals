@@ -113,7 +113,7 @@
 							<div class="product_quantity_container">
 								<div class="product_quantity clearfix">
 									<span>Qty</span>
-									<input id="quantity_input" type="text" value="<?php echo $quantity?>" pattern="[0-9]*" value="1">
+									<input id="quantity_input" nam="qty" type="text" value="<?php echo $quantity?>" pattern="[0-9]*" value="1">
 									<div class="quantity_buttons">
 										<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 										<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
@@ -270,5 +270,27 @@
 	// header("Refresh:0");
 	// echo "<meta http-equiv='refresh' content = '5'";
 	?>
+
+<script type="text/javascript">
+  // start jQuery function to load the content of all functions after the page is loaded completely
+  $(document).ready(function(){
+    //jQuery function to get the value changed in the input field
+    $('#quantity_input').change(function(){
+      //Store the selected input value in vendor_name variable
+      var quantity = $(this).val();
+      // start Ajax call to get the models belongs to a particular vendor_name
+      $.ajax({
+        url: "ajax.php",   //Path for PHP file to fetch phone models from DB
+        method: "POST",       //Fetching method
+        data: {quantity:quantity},  //Data send to the server to get the results
+        success:function(data)    //If data fetched successfully from the server, execute this function
+        {
+          // console.log(data);
+          $('#city').html(data);  //Print the fetched models in the section wih ID - #item
+        }
+      });
+    });   
+  });
+</script>
 
 	<!-- <script>window.location.reload()</script> -->

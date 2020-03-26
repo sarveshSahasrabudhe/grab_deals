@@ -89,7 +89,7 @@
 												$query_disp_result = mysqli_query($connection,$query_disp);
 												$roww = mysqli_fetch_assoc($query_disp_result);
 												
-														$product_sub_cat = $roww['product_sub_cat'];
+												//$product_sub_cat = $roww['product_sub_cat'];
 										echo "
 										
 										
